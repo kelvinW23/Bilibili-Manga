@@ -1,0 +1,19 @@
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: 00 00 * * *
+
+jobs:
+  Bilibili-Manga:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+      - name: Main
+        uses: ./
+        env:
+          account: ${{ secrets.ACCOUNT }}
+          password: ${{ secrets.PASSWORD }}
+          push_key: ${{ secrets.PUSH_KEY }}
